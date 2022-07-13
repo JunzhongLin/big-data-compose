@@ -92,5 +92,8 @@ To run this application you need Docker Engine >= 1.10.0. Docker Compose is reco
     docker compose up
     ```
 
+### Explaination for the docker-compose.yml
+----
+
 
 

@@ -65,6 +65,8 @@ services:
       - SPARK_EXECUTOR_MEMORY=1G
       - SPARK_WORKLOAD=worker
       - SPARK_LOCAL_IP=spark-worker-a
+    volumes:
+      - ./test_case/data:/job/data
 
   spark-worker-b:
     image: standalone-pyspark:2.3.2-hadoop2.7-py3.7
@@ -81,6 +83,8 @@ services:
       - SPARK_EXECUTOR_MEMORY=1G
       - SPARK_WORKLOAD=worker
       - SPARK_LOCAL_IP=spark-worker-b
+    volumes:
+      - ./test_case/data:/job/data
 
   livy:
     image: john/livy-spark:0.3.0
