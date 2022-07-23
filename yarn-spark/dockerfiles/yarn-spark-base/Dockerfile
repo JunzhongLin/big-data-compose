@@ -3,7 +3,7 @@ FROM openjdk:8u332-slim-buster
 USER root
 
 # Add Tools and Python
-RUN apt-get update && apt-get install -y curl vim wget openssh-server software-properties-common \
+RUN apt-get update && apt-get install -y curl vim wget zip openssh-server software-properties-common \
 ssh net-tools ca-certificates python3.7 python3-pip \
 && rm -rf /var/lib/apt/lists/* \
 && pip3 install --no-cache-dir --upgrade pip setuptools \

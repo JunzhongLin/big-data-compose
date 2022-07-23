@@ -29,8 +29,6 @@ services:
     hostname: cluster-slave-1
     expose:
       - 1-65535
-    volumes:
-      - ./test_case/data:/job/data
 #    tty: true
 
   slave-2:
@@ -38,6 +36,4 @@ services:
     hostname: cluster-slave-2
     expose:
       - 1-65535
-    volumes:
-      - ./test_case/data:/job/data
 #    tty: true
