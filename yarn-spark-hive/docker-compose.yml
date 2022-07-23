@@ -1,0 +1,56 @@
+version: "3.7"
+services:
+
+  hivemetastore:
+    image: postgres:11.5
+    hostname: hivemetastore
+    environment:
+      POSTGRES_PASSWORD: new_password
+    expose:
+      - 5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  master:
+    image: john/hive-spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    hostname: cluster-master
+    # restart: always
+    depends_on:
+      - slave-1
+      - slave-2
+    expose:
+      - 1-65535
+    environment:
+      - USRDEF_NODE=master
+    ports:
+      # YARN UI
+      - 8088:8088
+      # SPARK MASTER WEBUI
+      - 9090:8080
+      # HADOOP
+      - 50070:50070
+      - 50090:50090
+#    tty: true
+
+  slave-1:
+    image: john/hive-spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    hostname: cluster-slave-1
+    depends_on:
+      - hivemetastore
+    expose:
+      - 1-65535
+#    tty: true
+
+  slave-2:
+    image: john/hive-spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    hostname: cluster-slave-2
+    depends_on:
+      - hivemetastore
+    expose:
+      - 1-65535
+#    tty: true
