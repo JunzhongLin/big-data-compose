@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+
+  master:
+    image: john/spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    hostname: cluster-master
+    # restart: always
+    depends_on:
+      - slave-1
+      - slave-2
+    expose:
+      - 1-65535
+    environment:
+      - USRDEF_NODE=master
+    ports:
+      # YARN UI
+      - 8088:8088
+      # SPARK MASTER WEBUI
+      - 9090:8080
+      # HADOOP
+      - 50070:50070
+      - 50090:50090
+#    tty: true
+    volumes:
+      - ./test_case:/job
+
+  slave-1:
+    image: john/spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    hostname: cluster-slave-1
+    expose:
+      - 1-65535
+    volumes:
+      - ./test_case/data:/job/data
+#    tty: true
+
+  slave-2:
+    image: john/spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    hostname: cluster-slave-2
+    expose:
+      - 1-65535
+    volumes:
+      - ./test_case/data:/job/data
+#    tty: true
