@@ -49,7 +49,7 @@ services:
       - cluster-slave-2
     environment:
       - SPARK_MASTER=yarn
-      - SPARK_DEPLOY_MODE=client
+      - SPARK_DEPLOY_MODE=cluster
       - LOCAL_DIR_WHITELIST=/job
 
     volumes:

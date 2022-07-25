@@ -51,7 +51,8 @@ RUN mv /tmp/hadoop-env.sh $HADOOP_HOME/etc/hadoop/hadoop-env.sh \
     && mv /tmp/slaves $SPARK_HOME/conf/slaves \
     && mv /tmp/spark/spark-env.sh $SPARK_HOME/conf/spark-env.sh \
     && mv /tmp/spark/log4j.properties $SPARK_HOME/conf/log4j.properties \
-    && mv /tmp/spark/spark.defaults.conf $SPARK_HOME/conf/spark.defaults.conf
+    && mv /tmp/spark/spark.defaults.conf $SPARK_HOME/conf/spark.defaults.conf \
+    && mv /tmp/livy/livy-env.sh $LIVY_CONF_DIR/livy-env.sh
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
