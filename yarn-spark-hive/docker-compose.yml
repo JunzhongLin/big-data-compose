@@ -29,6 +29,8 @@ services:
       - 1-65535
     environment:
       - USRDEF_NODE=master
+    volumes:
+      - ./grades.csv:/grades.csv
     ports:
       # YARN UI
       - 8088:8088
