@@ -18,6 +18,8 @@ services:
 
   master:
     image: john/hive-spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    build:
+      context: ./dockerfiles/base/
     hostname: cluster-master
     # restart: always
     depends_on:
@@ -39,6 +41,8 @@ services:
 
   slave-1:
     image: john/hive-spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    build:
+      context: ./dockerfiles/base/
     hostname: cluster-slave-1
     depends_on:
       - hivemetastore
@@ -48,6 +52,8 @@ services:
 
   slave-2:
     image: john/hive-spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    build:
+      context: ./dockerfiles/base/
     hostname: cluster-slave-2
     depends_on:
       - hivemetastore

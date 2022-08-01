@@ -43,6 +43,8 @@ services:
   
   spark-master:
     image: standalone-pyspark:2.3.2-hadoop2.7-py3.7
+    build:
+      context: ./docker_files/spark_dep/
     ports:
       - "9090:8080"
       - "7077:7077"
@@ -52,6 +54,8 @@ services:
       - SPARK_WORKLOAD=master
   spark-worker-a:
     image: standalone-pyspark:2.3.2-hadoop2.7-py3.7
+    build:
+      context: ./docker_files/spark_dep/
     ports:
       - "9091:8080"
       - "7000:7000"
@@ -70,6 +74,8 @@ services:
 
   spark-worker-b:
     image: standalone-pyspark:2.3.2-hadoop2.7-py3.7
+    build:
+      context: ./docker_files/spark_dep/
     ports:
       - "9092:8080"
       - "7001:7000"
@@ -88,7 +94,8 @@ services:
 
   livy:
     image: john/livy-spark:0.3.0
-    
+    build:
+      context: ./docker_files/livy-spark/
     ports:
       - "8998:8998"
     depends_on:

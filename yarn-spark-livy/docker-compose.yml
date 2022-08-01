@@ -3,6 +3,8 @@ services:
 
   master:
     image: john/spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    build:
+      context: ../yarn-spark/dockerfiles/yarn-spark-base/
     hostname: cluster-master
     # restart: always
     depends_on:
@@ -26,6 +28,8 @@ services:
 
   slave-1:
     image: john/spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    build:
+      context: ../yarn-spark/dockerfiles/yarn-spark-base/
     hostname: cluster-slave-1
     expose:
       - 1-65535
@@ -33,6 +37,8 @@ services:
 
   slave-2:
     image: john/spark-yarn:2.4.1-hadoop2.7.3-py3.7
+    build:
+      context: ../yarn-spark/dockerfiles/yarn-spark-base/
     hostname: cluster-slave-2
     expose:
       - 1-65535
@@ -40,7 +46,8 @@ services:
 
   livy:
     image: john/spark_2.4.1_livy_0.7.0:0.1.0
-
+    build:
+      context: ./dockerfiles/spark-livy/
     ports:
       - 8998:8998
     depends_on:
