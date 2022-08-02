@@ -51,12 +51,12 @@ services:
     ports:
       - 8998:8998
     depends_on:
-      - cluster-master
-      - cluster-slave-1
-      - cluster-slave-2
+      - master
+      - slave-1
+      - slave-2
     environment:
       - SPARK_MASTER=yarn
-      - SPARK_DEPLOY_MODE=cluster
+      - SPARK_DEPLOY_MODE=client
       - LOCAL_DIR_WHITELIST=/job
 
     volumes:

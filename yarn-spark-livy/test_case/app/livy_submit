@@ -2,10 +2,10 @@ curl --request POST \
   --url http://localhost:8998/batches \
   --header 'content-type: application/json' \
   --data '{
-	"file": "/job/app/wordcount.py",
+	"file": "local:///job/app/wordcount.py",
 	"pyFiles": [
-		"/job/app/wordcount.py",
-        "/job/packages.zip"
+		"local:///job/app/wordcount.py",
+        "local:///job/packages.zip"
 	],
 	"files": []
 }' | python3 -mjson.tool
